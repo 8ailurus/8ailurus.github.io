@@ -11,6 +11,7 @@ import { StaticQuery, graphql } from "gatsby"
 import styled from "@emotion/styled"
 
 import Header from "./header"
+import IconHeart from "./icon-heart"
 import "./layout.css"
 
 const Content = styled.div`
@@ -20,13 +21,25 @@ const Content = styled.div`
   padding-top: 0;
 `
 
-const GatsbyLink = styled.a`
-  margin-left: 5px;
-`
-
 const Footer = styled.footer`
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+`
+
+const CreditInfo = styled.div`
+  display: flex;
+  margin-bottom: 8px;
+`
+
+const IconHeartP = styled.span`
+  margin-left: 4px;
+  margin-right: 4px;
+`
+
+const License = styled.div`
+  display: flex;
 `
 
 const Layout = ({ children }) => (
@@ -40,17 +53,33 @@ const Layout = ({ children }) => (
         }
       }
     `}
-    render={data => (
+    render={(data) => (
       <>
         <Header siteTitle={data.site.siteMetadata.title} />
         <Content>
           <main>{children}</main>
           <Footer>
-            <p>
-            © {new Date().getFullYear()}, Built with
-            {` `}
-            </p>
-            <GatsbyLink href="https://www.gatsbyjs.org">Gatsby</GatsbyLink>
+            <CreditInfo>
+              <span>{`© ${new Date().getFullYear()}, Crafted with `}</span>
+              <IconHeartP>
+                <IconHeart />
+              </IconHeartP>
+
+              <span>{` by Hy & Meo`}</span>
+            </CreditInfo>
+
+            <License>
+              <a
+                rel="license"
+                href="http://creativecommons.org/licenses/by-nc/4.0/"
+              >
+                <img
+                  alt="Creative Commons License"
+                  style={{ borderWidth: 0 }}
+                  src="https://i.creativecommons.org/l/by-nc/4.0/80x15.png"
+                />
+              </a>
+            </License>
           </Footer>
         </Content>
       </>
